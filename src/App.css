@@ -1,0 +1,169 @@
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── TOKENS ── */
+:root {
+  --yellow:     #F5E642;
+  --black:      #0D0D0D;
+  --dark:       #1A1A1A;
+  --beige:      #F4F2EC;
+  --white:      #FFFFFF;
+  --muted:      rgba(255,255,255,0.38);
+  --muted-dark: rgba(26,26,26,0.4);
+  --radius-sm:  10px;
+  --radius-md:  14px;
+  --radius-lg:  18px;
+  --radius-xl:  40px;
+  --font:       -apple-system, 'Inter', sans-serif;
+}
+
+body {
+  font-family: var(--font);
+  background: #e8e6e0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+/* ── LAYOUT ── */
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+/* ── PHONE FRAME ── */
+.phone-frame {
+  width: 375px;
+  height: 780px;
+  border-radius: 44px;
+  border: 2px solid #2A2A2A;
+  box-shadow: 0 0 0 6px #1A1A1A, 0 32px 64px rgba(0,0,0,0.4);
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--black);
+}
+
+.notch {
+  width: 110px;
+  height: 28px;
+  background: var(--black);
+  border-radius: 0 0 18px 18px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+  flex-shrink: 0;
+}
+
+/* ── PREVIEW SWITCHER ── */
+.preview-switcher {
+  display: flex;
+  gap: 8px;
+  background: rgba(0,0,0,0.15);
+  padding: 5px;
+  border-radius: 30px;
+}
+
+.preview-switcher button {
+  padding: 8px 20px;
+  border: none;
+  border-radius: 25px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  background: transparent;
+  color: rgba(26,26,26,0.5);
+  transition: background 0.18s, color 0.18s;
+}
+
+.preview-switcher button.active {
+  background: var(--dark);
+  color: var(--yellow);
+}
+
+/* ── SCROLLABLE SCREEN ── */
+.screen {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.screen-scroll {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.screen-scroll::-webkit-scrollbar { display: none; }
+
+/* ── STATUS BAR ── */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 22px 0;
+  font-size: 11px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.status-bar .signal {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+.signal-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+}
+
+/* ── BOTTOM NAV (shared) ── */
+.bottom-nav {
+  display: flex;
+  padding: 10px 10px 22px;
+  flex-shrink: 0;
+}
+
+.nav-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  cursor: pointer;
+  padding: 6px 0;
+}
+
+.nav-pip {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+}
+
+.nav-icon { font-size: 19px; }
+.nav-label { font-size: 10px; font-weight: 600; }
+
+/* ── RESPONSIVE: tela cheia em mobile ── */
+@media (max-width: 480px) {
+  body { background: var(--beige); padding: 0; align-items: flex-start; }
+
+  .phone-frame {
+    width: 100vw;
+    height: 100dvh;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+  }
+
+  .notch { display: none; }
+  .preview-switcher { display: none; }
+}
